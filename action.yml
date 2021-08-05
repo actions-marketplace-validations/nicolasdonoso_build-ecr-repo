@@ -1,0 +1,14 @@
+name: 'ECR repo'
+description: 'Create a repo in AWS ECR'
+inputs:
+  repo-name:  # id of input
+    description: 'Repo name'
+    required: true
+outputs:
+  time: # id of output
+    description: 'The time image was pushed to ECR'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.repo-name }}
