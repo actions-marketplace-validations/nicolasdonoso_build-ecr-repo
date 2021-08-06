@@ -6,7 +6,7 @@ inputs:
     required: true
 outputs:
   time: # id of output
-    description: 'The time image was pushed to ECR'
+    description: 'The time ECR repo was created'
 runs:
   using: 'docker'
   image: 'Dockerfile'
