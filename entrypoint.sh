@@ -6,17 +6,17 @@ echo "Creating $PROJECT_NAME ECR repo"
 
 mkdir -p deploy/terraform
 
-cat << EOF > deploy/terraform/main.tf
+cat << EOF > variables.tf
 variable "account" {
   default = "$AWS_ACCOUNT"
 }
 
 variable "region" {
-  default = "AWS_REGION"
+  default = "$AWS_REGION"
 }
 EOF
 
-cat << EOF > deploy/terraform/main.tf
+cat << EOF > main.tf
 provider "aws" {
     region = var.region
 }
@@ -31,6 +31,8 @@ resource "aws_ecr_repository" "$PROJECT_NAME" {
 }
 EOF
 
+envsubst < variables.tf > deploy/terraform/variables.tf
+envsubst < main.tf > deploy/terraform/main.tf
 cd deploy/terraform/
 terraform init
 terraform plan -out=plan.tfplan

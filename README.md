@@ -20,16 +20,15 @@ jobs:
   build:
     runs-on: self-hosted
     name: Build
-    environment:
-      name: <ENV NAME>
     env:
       AWS_ACCOUNT: <AWS ACCOUNT ID>
       AWS_REGION: <AWS REGION>
+      NAME: <ENV NAME>
     steps:
       - name: Cache TF state
         uses: actions/cache@v2
         with:
-          key: ${{ environment.name  }}
+          key: $NAME
           path: |
             deploy/terraform/plan.tfplan
             deploy/terraform/.terraform
