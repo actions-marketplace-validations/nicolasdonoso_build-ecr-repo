@@ -36,6 +36,6 @@ envsubst < main.tf > deploy/terraform/main.tf
 cd deploy/terraform/
 terraform init
 terraform plan -out=plan.tfplan
-sleep 30
 echo "holding for 30s before running apply"
+sleep 30
 terraform apply -input=false plan.tfplan
