@@ -28,7 +28,7 @@ jobs:
       - name: Cache TF state
         uses: actions/cache@v2
         with:
-          key: $NAME
+          key: $NAME-$GITHUB_RUN_ID
           path: |
             deploy/terraform/plan.tfplan
             deploy/terraform/.terraform
